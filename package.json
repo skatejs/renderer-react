@@ -19,8 +19,11 @@
     "build:node":
       "babel --no-babelrc src --out-dir node --presets=$(pwd)/config/babel.node",
     "test": "jest",
-    "build:umd": "rollup -c && rollup -c --min"
+    "build:umd": "rollup -c && rollup -c --min",
+    "build":
+      "npm run build:es && npm run build:esnext && npm run build:node && npm run build:umd",
+    "prepublish": "npm run build"
   },
   "jest": { "modulePathIgnorePatterns": ["./node_modules"] },
-  "dependencies": { "conartist": "^0.5.0" }
+  "dependencies": { "conartist": "^0.5.1" }
 }
