@@ -3,28 +3,36 @@
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "conartist": "^0.6.1",
     "jest": "^20.0.4",
-    "babel-preset-es2015-rollup": "^3.0.0",
-    "rollup": "^0.47.4",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "rollup": "^0.49.3",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-uglify": "^2.0.1",
-    "conartist": "^0.5.2"
+    "skatejs": "latest"
   },
   "scripts": {
-    "build:es":
-      "babel --no-babelrc src --out-dir es --presets=$(pwd)/config/babel.es",
-    "build:esnext":
-      "babel --no-babelrc src --out-dir esnext --presets=$(pwd)/config/babel.esnext",
-    "build:node":
-      "babel --no-babelrc src --out-dir node --presets=$(pwd)/config/babel.node",
+    "build:es": "babel --no-babelrc src --out-dir es --presets=$(pwd)/config/babel.es",
+    "build:esnext": "babel --no-babelrc src --out-dir esnext --presets=$(pwd)/config/babel.esnext",
+    "build:node": "babel --no-babelrc src --out-dir node --presets=$(pwd)/config/babel.node",
     "test": "jest",
     "build:umd": "rollup -c && rollup -c --min",
-    "build":
-      "npm run build:es && npm run build:esnext && npm run build:node && npm run build:umd",
+    "build": "npm run build:es && npm run build:esnext && npm run build:node && npm run build:umd",
     "prepublish": "npm run build"
   },
-  "jest": { "modulePathIgnorePatterns": ["./node_modules"] },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "./node_modules"
+    ]
+  },
+  "peerDependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "skatejs": "latest"
+  },
   "dependencies": {}
 }
