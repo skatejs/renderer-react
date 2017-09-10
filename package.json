@@ -9,7 +9,8 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "rollup": "^0.47.4",
     "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-uglify": "^2.0.1"
+    "rollup-plugin-uglify": "^2.0.1",
+    "conartist": "^0.5.2"
   },
   "scripts": {
     "build:es":
@@ -25,5 +26,5 @@
     "prepublish": "npm run build"
   },
   "jest": { "modulePathIgnorePatterns": ["./node_modules"] },
-  "dependencies": { "conartist": "^0.5.1" }
+  "dependencies": {}
 }
