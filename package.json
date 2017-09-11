@@ -12,8 +12,7 @@
     "rollup-plugin-uglify": "^2.0.1",
     "conartist": "^0.7.1",
     "react": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "skatejs": "latest"
+    "react-dom": "^15.0.0"
   },
   "scripts": {
     "build:es":
