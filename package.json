@@ -30,8 +30,7 @@
   "jest": { "modulePathIgnorePatterns": ["./node_modules"] },
   "peerDependencies": {
     "react": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "skatejs": "latest"
+    "react-dom": "^15.0.0"
   },
   "dependencies": {}
 }

@@ -6,8 +6,7 @@ module.exports = config(babel(), base(), jest(), rollup(), {
     return Object.assign({}, rollup()['rollup.config.js'](), {
       globals: {
         react: 'React',
-        'react-dom': 'ReactDOM',
-        'skatejs/esnext': 'skate'
+        'react-dom': 'ReactDOM'
       },
       name: 'skateRendererReact'
     });
