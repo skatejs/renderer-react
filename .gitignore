@@ -4,8 +4,3 @@
 /node_modules
 npm-debug.log*
 /umd
-/coverage
-/demo/dist
-/lib
-/public
-/ts-output
