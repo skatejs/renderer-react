@@ -1,7 +1,5 @@
 # skatejs/renderer-react
 
-*NOTE!!! This is not published to NPM yet and is not final. Once https://github.com/skatejs/skatejs/pull/1218 is merged, this will be officially released!*
-
 > SkateJS renderer for React.
 
 ## Install
