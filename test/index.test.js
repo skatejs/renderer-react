@@ -16,7 +16,7 @@ test('renders', () => {
   const el = new MyElement();
   expect(el.innerHTML).toEqual('');
   el.rendererCallback(el, el.renderCallback.bind(el, { name: 'World' }));
-  expect(el.innerHTML).toEqual('<div>Hello, World!</div>');
+  expect(el.innerHTML).toEqual(testContent('World'));
   el.rendererCallback(el, el.renderCallback.bind(el, { name: 'Bob' }));
-  expect(el.innerHTML).toEqual('<div>Hello, Bob!</div>');
+  expect(el.innerHTML).toEqual(testContent('Bob'));
 });
