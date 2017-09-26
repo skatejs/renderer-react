@@ -14,8 +14,8 @@
     "babel-eslint": "^7.2.3",
     "babel-preset-es2015-rollup": "^3.0.0",
     "conartist": "^0.11.1",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "files": [
     "es/",
@@ -46,7 +46,8 @@
   "jest": {
     "modulePathIgnorePatterns": [
       "./node_modules"
-    ]
+    ],
+    "testEnvironment": "@skatejs/ssr/jest"
   },
   "browser": "umd/index.js",
   "peerDependencies": {
