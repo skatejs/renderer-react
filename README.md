@@ -14,7 +14,7 @@ The simple use case is if you're using React as a rendering layer.
 
 ```js
 import { props, withComponent } from 'skatejs';
-import { withReact } from '@skatejs/renderer-react';
+import withReact from '@skatejs/renderer-react';
 import React from 'react';
 
 class WcHello extends withComponent(withReact()) {
@@ -33,7 +33,7 @@ A more complex use case is if you have an existing React component that you want
 
 ```js
 import { props, withComponent } from 'skatejs';
-import { withReact } from '@skatejs/renderer-react';
+import withReact from '@skatejs/renderer-react';
 import React, { Component } from 'react';
 
 // React component we want to wrap in the web component.
