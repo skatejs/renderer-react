@@ -21,6 +21,12 @@ class WcHello extends withComponent(withReact()) {
   static props = {
     yell: props.boolean
   }
+  get props() {
+    return {
+      ...super.props,
+      ...{ children: <slot /> }
+    };
+  }
   renderCallback({ name }) {
     return <div>Hello, {yell ? <strong>{children}</strong> : children}!</div>;
   }
@@ -58,6 +64,13 @@ class WcHello extends withComponent(withReact()) {
     // You could write a Babel plugin to transform Flow types to
     // property definitions, but we haven't done that yet.
     yell: props.boolean
+  }
+  get props() {
+    // Override props in order to recover the value of slot 
+    return {
+      ...super.props,
+      ...{ children: <slot /> }
+    };
   }
   renderCallback({ props }) {
     return (
