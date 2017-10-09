@@ -72,12 +72,13 @@ For either example, you can now just write HTML:
 <wc-hello yell>World</wc-hello>
 ```
 
-There's two important things to note about the above example:
+It's important to note that it's a best practice to provide an attribute API, so we must specify `props` that will auto-link props to attributes. This is also required because the component needs to know which props cause a re-render.
 
-1. It's best practice to provide an attribute API, so we must specify `props` that will auto-link props to attributes. This is also required because the component needs to know which props cause a re-render.
-2. If you're using Flow, you can share prop type definitions for both components using [this Babel plugin](https://github.com/skatejs/babel-plugin-transform-skate-flow-props).
+This can be automated as described in the next section.
 
 ## Using Flow to share prop types
+
+If you're using Flow, you can share prop type definitions for both components using [this Babel plugin](https://github.com/skatejs/babel-plugin-transform-skate-flow-props).
 
 The example above can be rewritten to share Flow types for their props.
 
