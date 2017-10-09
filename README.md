@@ -18,10 +18,11 @@ import withReact from '@skatejs/renderer-react';
 import React from 'react';
 
 class WcHello extends withComponent(withReact()) {
+  // The `children` prop is auto-defined in the `withReact` mixin and outputs a <slot />
   static props = {
     yell: props.boolean
   }
-  renderCallback({ name }) {
+  renderCallback({ children, yell }) {
     return <div>Hello, {yell ? <strong>{children}</strong> : children}!</div>;
   }
 }
@@ -29,15 +30,20 @@ class WcHello extends withComponent(withReact()) {
 customElements.define('wc-hello', WcHello);
 ```
 
-A more complex use case is if you have an existing React component that you want to wrap in a web component.
+## Wrapping React components with Web Components
+
+Being able to wrap a React component with a web component is extremely powerful because you can author everything in React - whether it be existing or new components - and use them in any other stack that works with the DOM such as Vue, Angular, Preact, Inferno, CycleJS and more.
+
+This isn't specific to React, we have other renderers and the same rule applies, React is simply the largest and most popular option at the moment, so it carries more weight to make an example with it.
+
+Here we take the previous example and author a standalone React component from it.
 
 ```js
 import { props, withComponent } from 'skatejs';
 import withReact from '@skatejs/renderer-react';
-import React, { Component } from 'react';
+import React from 'react';
 
-// React component we want to wrap in the web component.
-class ReactHello extends Component {
+class ReactHello extends React.Component {
   render() {
     const { children, yell } = this.props;
     return (
@@ -46,17 +52,8 @@ class ReactHello extends Component {
   }
 }
 
-// Web component that renders using React. This is all you need
-// to do to wrap the React component. All props can be passed
-// down and {children} becomes <slot />.
 class WcHello extends withComponent(withReact()) {
   static props = {
-    // Unfortunately we need to declare props on the custom element
-    // because it needs to be able to link between observed attributes
-    // and properties.
-    //
-    // You could write a Babel plugin to transform Flow types to
-    // property definitions, but we haven't done that yet.
     yell: props.boolean
   }
   renderCallback({ props }) {
@@ -73,4 +70,57 @@ For either example, you can now just write HTML:
 
 ```html
 <wc-hello yell>World</wc-hello>
+```
+
+There's two important things to note about the above example:
+
+1. It's best practice to provide an attribute API, so we must specify `props` that will auto-link props to attributes. This is also required because the component needs to know which props cause a re-render.
+2. If you're using Flow, you can share prop type definitions for both components using [this Babel plugin](https://github.com/skatejs/babel-plugin-transform-skate-flow-props).
+
+## Using Flow to share prop types
+
+The example above can be rewritten to share Flow types for their props.
+
+```js
+// @flow
+
+import { props, withComponent } from 'skatejs';
+import withReact from '@skatejs/renderer-react';
+import React from 'react';
+
+type Props = {
+  yell: boolean;
+};
+
+class ReactHello extends React.Component {
+  props: Props;
+  render() {
+    const { children, yell } = this.props;
+    return (
+      <div>Hello, {yell ? <strong>{children}</strong> : children}!</div>
+    );
+  }
+}
+
+class WcHello extends withComponent(withReact()) {
+  props: Props;
+  renderCallback() {
+    return (
+      <ReactHello {...this.props} />
+    );
+  }
+}
+
+customElements.define('wc-hello', WcHello);
+```
+
+## Future plans
+
+One of the major use cases of this renderer would be to wrap React components. Therefore it would make sense to provide a conventional implementation of `renderCallback`, instead of having to specify it every time. Maybe something like the following:
+
+```js
+class WcHello extends withComponent(withReact()) {
+  props: Props;
+  static reactComponent = ReactHello;
+}
 ```
