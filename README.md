@@ -17,7 +17,7 @@ import { props, withComponent } from 'skatejs';
 import withReact from '@skatejs/renderer-react';
 import React from 'react';
 
-class WcHello extends withComponent(withReact()) {
+class WcHello extends withReact(withComponent()) {
   // The `children` prop is auto-defined in the `withReact` mixin and outputs a <slot />
   static props = {
     yell: props.boolean
@@ -52,7 +52,7 @@ class ReactHello extends React.Component {
   }
 }
 
-class WcHello extends withComponent(withReact()) {
+class WcHello extends withReact(withComponent()) {
   static props = {
     yell: props.boolean
   }
@@ -103,7 +103,7 @@ class ReactHello extends React.Component {
   }
 }
 
-class WcHello extends withComponent(withReact()) {
+class WcHello extends withReact(withComponent()) {
   props: Props;
   renderCallback() {
     return (
@@ -120,7 +120,7 @@ customElements.define('wc-hello', WcHello);
 One of the major use cases of this renderer would be to wrap React components. Therefore it would make sense to provide a conventional implementation of `renderCallback`, instead of having to specify it every time. Maybe something like the following:
 
 ```js
-class WcHello extends withComponent(withReact()) {
+class WcHello extends withReact(withComponent()) {
   props: Props;
   static reactComponent = ReactHello;
 }
