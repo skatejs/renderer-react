@@ -58,7 +58,7 @@ class WcHello extends withComponent(withReact()) {
   }
   renderCallback({ props }) {
     return (
-      <ReactHello {...props} />
+      <ReactHello {...props}><slot/></ReactHello>
     );
   }
 }
